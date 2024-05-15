@@ -1,0 +1,166 @@
+:root {
+  color-scheme: light;
+
+  --header-height: 50px;
+
+  --com-primary-color: #0249B1;
+  --com-border: unset;
+  --com-border-radius: 4px;
+  --com-container-bg: #f4f9ff;
+  --com-container-shadow: unset;
+  --com-box-bg: #f4f9ff;
+  --com-box-shadow: unset;
+}
+
+/* style */
+
+body {
+  background: #d3efff;
+  color: #000;
+}
+
+.com-header {
+  background: var(--com-primary-color);
+  color: #fff;
+  width: 100%;
+  height: var(--header-height);
+  padding: 0 24px;
+}
+
+/* 容器背景 */
+.com-container-bg {
+  background: var(--com-container-bg);
+}
+
+.com-container-border {
+  border: var(--com-border);
+  border-radius: var(--com-border-radius);
+  box-shadow: var(--com-container-shadow);
+}
+
+/* 通用容器 */
+.com-container {
+  @extend .com-container-bg;
+  @extend .com-container-border;
+}
+
+/* 基础容器尺寸、颜色 private */
+._container-base {
+  position: relative;
+  height: calc(100vh - var(--header-height) - 24px - 24px);
+  margin: 24px 24px 0;
+  color: #000;
+  overflow: hidden;
+}
+
+/* 表格容器外层 */
+.com-table-wrap {
+  @extend ._container-base;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* 表格容器 */
+.com-table-container {
+  @extend .com-container-bg;
+  @extend .com-container-border;
+  padding: 24px 24px 16px;
+}
+
+.com-table-filter {
+  @extend .com-container-bg;
+  @extend .com-container-border;
+  padding: 24px;
+}
+
+.com-table-filter-nb {
+  @extend .com-container-bg;
+  @extend .com-container-border;
+  border-radius: unset;
+  padding: 24px;
+}
+
+// 只有底部带圆角 borer-left-right,
+.com-table-filter-blr {
+  @extend .com-container-bg;
+  @extend .com-container-border;
+  border-top-left-radius: unset;
+  border-top-right-radius: unset;
+  padding: 24px;
+}
+
+
+/* Box盒子（比container小的模块） */
+
+.com-box-bg {
+  background: var(--com-box-bg);
+}
+
+.com-box-border {
+  border: var(--com-border);
+  border-radius: var(--com-border-radius);
+  box-shadow: var(--com-box-shadow);
+}
+
+.com-box {
+  @extend .com-box-bg;
+  @extend .com-box-border;
+}
+
+/* com-g-x-x -> */
+
+.com-g-row-aa {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.com-g-row-a1 {
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.com-g-row-aa1 {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.com-g-col-a1 {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.com-g-col-1a {
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+/* com-g-x-x  <- */
+
+
+.com-action-button {
+  --n-text-color: var(--com-primary-color) !important;
+}
+
+.com-empty {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+
+/* overwrite naiveUI style -> */
+
+/* 悬浮提示框宽度 */
+.n-popover {
+  @apply max-w-[600px];
+}
+
+/* 侧边弹窗背景虚化 */
+.n-drawer {
+  backdrop-filter: blur(3px);
+}
+
+/* <- */

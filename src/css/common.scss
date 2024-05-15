@@ -1,0 +1,24 @@
+@mixin autofill($color, $theme) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $color;
+    color-scheme: $theme;
+  }
+}
+
+.com-autofill-dark-none {
+  @include autofill(rgba(255, 255, 255, 0.9), dark);
+
+}
+
+.com-autofill-light-none {
+  @include autofill(rgba(0, 0, 0, 0.9), light);
+}
