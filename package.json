@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
+    "build": "vite build",
+    "build:turbo": "npx turbo@latest run build",
     "tsc": "vue-tsc --noEmit",
     "lint": "eslint . --ext .js,.ts,.vue --ignore-path .eslintignore",
     "lint:fix": "eslint . --ext .js,.ts,.vue --fix",

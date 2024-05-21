@@ -24,3 +24,7 @@ auto-imports.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# Turbo directories and files
+.turbo/*
+!.turbo/config.json
