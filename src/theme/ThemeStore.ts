@@ -1,8 +1,9 @@
 import { LS } from '@/utils/storages';
 import { ref, Ref } from 'vue';
+import pkg from '../../package.json';
 
 class ThemeStore {
-  private cacheKey = 'ACS_THEME';
+  private cacheKey = `THEME_${pkg.name.toUpperCase().replace(/-/g, '_')}`;
   themeRef: Ref<ThemeConfig> = ref(new ThemeConfig());
 
   constructor() {
