@@ -25,12 +25,14 @@ class ThemeStore {
     document.documentElement.setAttribute('class', nv.theme);
   }
 
-  toggleTheme() {
+  toggleTheme(theme?: 'light' | 'dark' | 'auto') {
     const val = this.themeConfig;
-    if (val.isFollowSystem) {
-      this.useSystemTheme();
+
+    if (theme === 'auto') {
+      this.setThemeAuto();
     } else {
-      val.theme = val.theme === 'light' ? 'dark' : 'light';
+      val.isFollowSystem = false; // 手动切换 强制退出"自动"模式
+      val.theme = theme || (val.theme === 'light' ? 'dark' : 'light');
       this.themeConfig = val;
     }
   }
@@ -39,8 +41,15 @@ class ThemeStore {
     const val = this.themeConfig;
     const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
     val.theme = mediaQuery.matches ? 'light' : 'dark';
-    val.isFollowSystem = true;
     this.themeConfig = val;
+  }
+
+  /**
+   * 设置跟随系统主题自动切换
+   */
+  setThemeAuto() {
+    this.themeConfig = Object.assign(this.themeConfig, { isFollowSystem: true });
+    this.useSystemTheme();
   }
 
   reset() {
@@ -49,12 +58,21 @@ class ThemeStore {
 
   private initSystemThemeListener() {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: light)');
-    mediaQuery.onchange = () => this.useSystemTheme();
+    const applySystemTheme = () => {
+      if (this.themeConfig.isFollowSystem) {
+        this.useSystemTheme();
+      }
+    };
+
+    // Initialize theme based on system setting
+    applySystemTheme();
+    // Listen for changes in system theme and apply if necessary
+    mediaQuery.onchange = applySystemTheme;
   }
 }
 
 class ThemeConfig {
-  theme: 'dark' | 'light' = 'dark';
+  theme: 'dark' | 'light' = 'light';
   isFollowSystem = false;
 }
 
