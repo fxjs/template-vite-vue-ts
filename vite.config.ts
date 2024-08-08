@@ -10,6 +10,13 @@ export default defineConfig({
     port: 8181,
     open: true,
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@import "src/css/variables.scss";`,
+      },
+    },
+  },
   plugins: [
     vue(),
     Components({
@@ -20,6 +27,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': resolve(__dirname, 'src'),
+      src: resolve(__dirname, 'src'),
     },
   },
 });

@@ -8,14 +8,13 @@
  - 组件库：naive-ui
  - 图标库：@kalimahapps/vue-icons
  - 常用库：echarts、dayjs、rxjs等
- - lib库：集成lib.js（提供：获取URL参数`window.$_getUrlParams`、脚本注入`window.$_ScriptInjector`）
-
+ - lib.js集成：取URL参数`window.$_getUrlParams`、脚本注入`window.$_ScriptInjector`
+ - 请求库集成：[使用文档](https://www.npmjs.com/package/@tanzerfe/http)
+ - 皮肤库集成：扩展tailwindcss配置，支持亮色、暗色、自定义配色
+ - Hooks集成：常用钩子函数封装
 
 功能特性 **todo**：
  - [ ] manifest改造
- - [ ] 请求库集成
- - [ ] 皮肤库集成
- - [ ] 工具类库集成
  - [ ] 版本插件集成
  - [ ] 配置环境集成
  - [ ] CI/CD集成

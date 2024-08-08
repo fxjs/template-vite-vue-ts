@@ -1,0 +1,28 @@
+/**
+ * 暗色风格
+ */
+
+html.dark {
+    color-scheme: dark;
+
+    --skin-bg0: #0a1c31;
+    --skin-bg1: #0f2744;
+    --skin-bg2: #1b3b63;
+    --skin-bg3: #142e4e;
+    --skin-bg4: #1e3a5e;
+
+    --skin-t1: #ffffff;
+    --skin-t2: #f1f1f1;
+    --skin-t3: #c8c8c8;
+    --skin-t4: #bfbfbf;
+    --skin-t5: #8090a0;
+    --skin-t6: #f5f5f5;
+    --skin-t7: #5a6a7a;
+    --skin-t8: #f5f5f5;
+    --skin-t9: #d32f2f;
+    --skin-t10: #192b3c;
+
+    --skin-bd1: rgba(46, 144, 209, 0.15);
+    --skin-bd2: #0a4b7a;
+    --skin-divide: #444444;
+}

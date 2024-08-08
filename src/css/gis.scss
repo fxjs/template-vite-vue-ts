@@ -1,0 +1,13 @@
+/* 覆盖 gis css */
+
+.ol-viewport {
+    .ol-popup {
+        padding: 0;
+        background-color: unset;
+        border: unset;
+    }
+
+    .ol-popup-closer {
+        display: none;
+    }
+}

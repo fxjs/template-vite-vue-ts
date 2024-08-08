@@ -3,24 +3,23 @@
     preflight-style-disabled
     :locale="zhCN"
     :date-locale="dateZhCN"
-    :theme-overrides="theme.dark(primaryColor)"
+    :theme="isDark ? darkTheme : undefined"
+    :theme-overrides="isDark ? theme.dark(primaryColor) : theme.light(primaryColor)"
   >
     <router-view />
   </n-config-provider>
 </template>
 
 <script lang="ts" setup>
-import { NConfigProvider, zhCN, dateZhCN, NSelect, NCascader, NDataTable } from 'naive-ui';
+import { NConfigProvider, zhCN, dateZhCN, NSelect, NCascader, NDataTable, darkTheme } from 'naive-ui';
+import { themeStore } from '@/theme/ThemeStore';
 import { naiveThemeOverrides } from '@/theme';
 import { useCssVar } from '@vueuse/core';
+import { computed } from 'vue';
 
 const theme = naiveThemeOverrides();
-const primaryColor = useCssVar('--com-primary-color', document.documentElement);
-
-// setInterval(() => {
-//   // 调试：随机生成颜色
-//   primaryColor.value = `#${Math.random().toString(16).slice(2, 8)}`;
-// }, 1000);
+const primaryColor = useCssVar('--skin-c1', document.documentElement);
+const isDark = computed(() => themeStore.themeRef.value.theme === 'dark');
 
 // 全局修改NaiveUI组件默认属性
 NSelect.props.consistentMenuWidth = { type: Boolean, default: false };

@@ -1,6 +1,14 @@
+// 导入字体 digital数码字体
+@import './lib/digital-font.scss';
+
+// tailwindcss
 @import "tailwind.css";
-@import "font.css";
-@import "common.scss";
-@import 'naive-ui.scss'; // 覆写naive-ui样式
-//@import "skin-light.scss";
-@import "skin-dark.scss";
+
+// 覆写naive-ui样式
+@import 'naive-ui/index';
+
+// 自定义公共类 (与皮肤关联)
+@import 'common.scss';
+
+// 覆盖gis样式
+@import 'gis.scss';

@@ -1,0 +1,24 @@
+/**
+ * 公共配色
+ * 命名规则: 以 skin-c 开头
+ */
+
+// 转换十六进制颜色值为 RGB 字符串, 转换后的值支持设置透明度
+@function hex-to-rgb($hex) {
+    @return red($hex), green($hex), blue($hex);
+}
+
+
+:root {
+    // com
+    --skin-c1: #3e62eb;
+    --skin-c2: #20a32d;
+    --skin-c3: #ff3232;
+    --skin-c4: #00fefe;
+
+    // 以下定义的 -rgb 值 仅供 windicss-plugin-custom-opacity 插件使用
+    --skin-c1-rgb: #{hex-to-rgb(#3e62eb)};
+    --skin-c2-rgb: #{hex-to-rgb(#20a32d)};
+    --skin-c3-rgb: #{hex-to-rgb(#ff3232)};
+    --skin-c4-rgb: #{hex-to-rgb(#00fefe)};
+}
