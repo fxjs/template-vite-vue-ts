@@ -53,8 +53,8 @@ devDependencies:
     specifier: ^1.4.1
     version: 1.4.1(vue@3.4.27)
   '@tanzerfe/eslint-config-lint':
-    specifier: ^0.0.6
-    version: 0.0.6(eslint@8.57.0)(prettier@3.2.5)(typescript@5.5.4)
+    specifier: ^0.0.7
+    version: 0.0.7(eslint@8.57.0)(prettier@3.2.5)(typescript@5.5.4)
   '@tanzerfe/http':
     specifier: ^1.0.0
     version: 1.0.0
@@ -900,8 +900,8 @@ packages:
     dev: true
     optional: true
 
-  /@tanzerfe/eslint-config-lint@0.0.6(eslint@8.57.0)(prettier@3.2.5)(typescript@5.5.4):
-    resolution: {integrity: sha512-Nr6SDKBnwIsbOX9k201y7VYshZYBB6QPH6FRwPJywiTuO/7U7lTxHUK70WEDekcuc7dKEIDN/UGSStkcDLb3Ng==}
+  /@tanzerfe/eslint-config-lint@0.0.7(eslint@8.57.0)(prettier@3.2.5)(typescript@5.5.4):
+    resolution: {integrity: sha512-rkNuF6qm/vfqee9HRWe5Zv7l2kFZNISP8afiCrxxKyeskDj2gtJ6noCDXvw4ZNjLdXvPDo1l7TnjIN+XlPCUug==}
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.57.0)(typescript@5.5.4)
       '@typescript-eslint/parser': 5.62.0(eslint@8.57.0)(typescript@5.5.4)
