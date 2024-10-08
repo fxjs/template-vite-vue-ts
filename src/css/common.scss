@@ -3,76 +3,79 @@
  */
 
 body {
-    font-size: 14px;
-}
-
-@mixin autofill($color, $theme) {
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover,
-    input:-webkit-autofill:focus,
-    textarea:-webkit-autofill,
-    textarea:-webkit-autofill:hover,
-    textarea:-webkit-autofill:focus,
-    select:-webkit-autofill,
-    select:-webkit-autofill:hover,
-    select:-webkit-autofill:focus {
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: $color;
-        color-scheme: $theme;
-    }
-}
-
-.com-autofill-dark-none {
-    @include autofill(rgba(255, 255, 255, 0.9), dark);
-
-}
-
-.com-autofill-light-none {
-    @include autofill(rgba(0, 0, 0, 0.9), light);
+  font-size: 14px;
 }
 
 /* com-g-x-x -> */
 
 .com-g-row-aa {
-    display: grid;
-    grid-template-rows: auto auto;
+  display: grid;
+  grid-template-rows: auto auto;
 }
 
 .com-g-row-a1 {
-    display: grid;
-    grid-template-rows: auto 1fr;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 .com-g-row-aa1 {
-    display: grid;
-    grid-template-rows: auto auto 1fr;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
 }
 
 .com-g-row-full {
-    grid-template-rows: 100%;
+  grid-template-rows: 100%;
 }
 
 .com-g-col-a1 {
-    display: grid;
-    grid-template-columns: auto 1fr;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 .com-g-col-1a {
-    display: grid;
-    grid-template-columns: 1fr auto;
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
 .com-g-col-full {
-    grid-template-columns: 100%;
+  grid-template-columns: 100%;
 }
 
 /* com-g-x-x  <- */
 
 .com-empty {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    justify-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+
+@mixin autofill($color, $theme) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: $color;
+    color-scheme: $theme;
+  }
+}
+
+.com-autofill-none {
+  @include autofill(rgba(255, 255, 255, 0.9), dark);
+
+}
+
+.dark {
+  .com-autofill-none {
+    @include autofill(rgba(0, 0, 0, 0.9), light);
+  }
 }

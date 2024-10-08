@@ -1,4 +1,4 @@
-const plugin = require('tailwindcss/plugin');
+import plugin from 'tailwindcss/plugin';
 
 /**
  * windicss插件功能：自定义皮肤支持设置透明度

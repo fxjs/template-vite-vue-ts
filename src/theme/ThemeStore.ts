@@ -72,7 +72,7 @@ class ThemeStore {
 }
 
 class ThemeConfig {
-  theme: 'dark' | 'light' = 'light';
+  theme: 'dark' | 'light' = window.$SYS_CFG.defaultTheme;
   isFollowSystem = false;
 }
 
