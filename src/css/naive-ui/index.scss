@@ -41,3 +41,19 @@
 .n-popover:not(.n-popover--raw) {
     @apply max-w-[600px];
 }
+
+/* overwrite data-table empty position */
+.n-data-table-base-table:has(> .n-scrollbar) {
+    &:has(> .n-data-table-empty) {
+        position: relative;
+        height: 100%;
+        min-height: 260px;
+
+        > .n-data-table-empty {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, calc(-50% + 24px));
+        }
+    }
+}

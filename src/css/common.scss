@@ -11,16 +11,19 @@ body {
 .com-g-row-aa {
   display: grid;
   grid-template-rows: auto auto;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .com-g-row-a1 {
   display: grid;
   grid-template-rows: auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .com-g-row-aa1 {
   display: grid;
   grid-template-rows: auto auto 1fr;
+  grid-template-columns: minmax(0, 1fr);
 }
 
 .com-g-row-full {
