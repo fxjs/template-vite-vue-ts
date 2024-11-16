@@ -1,11 +1,11 @@
 import { stringify } from 'querystringify';
 import { merge } from 'lodash-es';
 // api file
-import demo from './demo';
+import demo from './demo.ts';
 
 export const api = {
   type: {
-    xxx: 'xxx-service',
+    demo: '',
   },
   name: merge(demo),
 
@@ -18,7 +18,7 @@ export const api = {
   getUrl(serviceType: string, apiName: string, query?: any): string {
     const url = window.$SYS_CFG.apiBaseURL;
     const paramsStr = query ? `?${stringify(query)}` : '';
-    const _apiName = apiName.indexOf('/') === 0 ? apiName : '/' + apiName;
+    const _apiName = apiName?.indexOf('/') === 0 ? apiName : '/' + apiName;
     const _serviceType = serviceType ? '/' + serviceType : '';
 
     return `${url}${_serviceType}${_apiName}${paramsStr}`;

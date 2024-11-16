@@ -7,8 +7,8 @@ import { injectVersionInfoPlugin } from './plugins/vite/vite-plugin-inject-versi
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   server: {
-    port: 8181,
     open: true,
   },
   css: {

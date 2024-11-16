@@ -33,6 +33,26 @@ export function trimObjNull(obj: Record<string, any>, isRemove = true, fill = ''
 }
 
 /**
+ * 空值转换
+ * @param obj
+ * @param fill 替换Empty的值 默认 '--'
+ * @param emptyValueList
+ */
+export function trimObjEmpty(obj: Record<string, any>, fill = '--', emptyValueList: any[] = []) {
+  const _obj = Object.assign({}, toRaw(obj));
+  const keys = Object.keys(_obj);
+
+  for (const key of keys) {
+    const _v = _obj[key];
+    if (_v === '' || _v === undefined || emptyValueList.includes(_v)) {
+      _obj[key] = fill;
+    }
+  }
+
+  return _obj;
+}
+
+/**
  * 解析数据
  * @param data
  * @return Object (default {})

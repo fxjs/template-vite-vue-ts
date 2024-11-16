@@ -11,17 +11,17 @@
 
 :root {
     // primary
-    $color-primary: #3e62eb;
+    $color-primary: #4570f6;
 
     // com
-    --skin-c1: #3e62eb;
+    --skin-c1: #4570f6;
     --skin-c2: #20a32d;
     --skin-c3: #ff3232;
     --skin-c4: #00fefe;
     --skin-c5: #093c6c;
 
     // 以下定义的 -rgb 值 仅供 plugin-custom-opacity 插件使用
-    --skin-c1-rgb: #{hex-to-rgb(#3e62eb)};
+    --skin-c1-rgb: #{hex-to-rgb(#4570f6)};
     --skin-c2-rgb: #{hex-to-rgb(#20a32d)};
     --skin-c3-rgb: #{hex-to-rgb(#ff3232)};
     --skin-c4-rgb: #{hex-to-rgb(#00fefe)};

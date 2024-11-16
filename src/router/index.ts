@@ -1,5 +1,6 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import routes from './routes';
+import { setupRouterGuard } from '@/router/guard';
 
 const Router = createRouter({
   scrollBehavior: () => ({
@@ -9,5 +10,9 @@ const Router = createRouter({
   routes,
   history: createWebHashHistory(),
 });
+
+export const initialRoutes: RouteRecordRaw[] = Router.getRoutes();
+
+setupRouterGuard(Router);
 
 export default Router;

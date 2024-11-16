@@ -1,6 +1,6 @@
+import { setupApi, setupAssets, setupRouter, setupStore } from '@/plugins';
 import { createApp } from 'vue';
 import App from './App.vue';
-import { setupApi, setupAssets, setupRouter } from '@/plugins';
 
 async function setupApp() {
   const app = createApp(App);
@@ -8,11 +8,14 @@ async function setupApp() {
   // import assets: js、css
   setupAssets();
 
+  // register store
+  setupStore(app);
+
   // api
   setupApi();
 
   // register module router
-  await setupRouter(app);
+  setupRouter(app);
 
   app.mount('#app');
 }

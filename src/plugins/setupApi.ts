@@ -1,8 +1,11 @@
 import { $Config } from '@tanzerfe/http';
-import { useToastCtx } from '@/common/shareContext';
+import useToastCtx from '@/common/shareContext/useToastCtx.ts';
+import { useAuthStore } from '@/store/auth';
 
 export function setupApi() {
-  $Config.getToken = () => undefined; // 配置获取token的方法
+  const store = useAuthStore();
+
+  $Config.getToken = () => store.userInfo.token;
   $Config.$toastDark = useToastCtx({ theme: 'dark' });
   $Config.$toastLight = useToastCtx({ theme: 'light' });
 }

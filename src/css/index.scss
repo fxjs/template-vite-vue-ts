@@ -4,7 +4,7 @@
 @tailwind utilities;
 
 // 导入特殊字体
-//@import './font/font.scss';
+@import './font/font.scss';
 
 // 覆写naive-ui样式
 @import 'naive-ui/index';

@@ -2,8 +2,13 @@ import { reactive, defineComponent, h } from 'vue';
 import { NPagination } from 'naive-ui';
 import type { PaginationProps } from 'naive-ui';
 
+type ExtendedPaginationProps = {
+  page: number;
+  itemCount: number;
+} & PaginationProps;
+
 export function useNaivePagination(queryHandle: (page: number, pageSize: number | undefined) => void, option?: any) {
-  const pagination: PaginationProps = reactive({
+  const pagination: ExtendedPaginationProps = reactive({
     page: 1,
     pageSize: 10,
     itemCount: 0,

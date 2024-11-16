@@ -135,6 +135,9 @@ export const themeDarkJson = {
     boxShadow: 'inset 0 0 15px rgba(21, 132, 195, 0.75)',
   },
   Empty: { ...themeExtra.Empty },
+  Form: {
+    feedbackPadding: '2px 0 4px 2px',
+  },
   Input: {
     color: SelectionBgColor,
     textColor: '#98B9D9',
@@ -182,8 +185,8 @@ export const themeDarkJson = {
  * 亮色组件配色
  */
 export const themeLightSetting = {
-  primary: '#0249b1',
-  info: '#909399',
+  primary: '#4570f6',
+  info: '#2080f0',
   success: '#67c23a',
   warning: '#e6a23c',
   error: '#f56c6c',
@@ -211,6 +214,9 @@ export const themeLightJson = {
     color: '#f4f9ff',
   },
   Empty: { ...themeExtra.Empty },
+  Form: {
+    feedbackPadding: '2px 0 4px 2px',
+  },
   Menu: {
     // bg
     itemColorHover: 'rgba(2, 73, 177, 0.1)',

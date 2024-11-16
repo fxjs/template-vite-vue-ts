@@ -5,10 +5,11 @@ import path from 'path';
 
 // 获取最新的 commit id 和 commit 时间
 function getGitCommitInfo() {
-  const commit = execSync('git rev-parse HEAD').toString().trim(); // 获取最新的 commit id
-  const commitDate = execSync('git log -1 --format=%cd').toString().trim(); // 获取最新的提交时间
+  const version = process.env.XF_VER || '';
+  // const commit = execSync('git rev-parse HEAD').toString().trim(); // 获取最新的 commit id
+  // const commitDate = execSync('git log -1 --format=%cd').toString().trim(); // 获取最新的提交时间
   const buildTime = new Date().toLocaleString();
-  return { commit, commitDate, buildTime };
+  return { version, buildTime };
 }
 
 // 读取并解析 config.js 文件，如果不存在则返回一个空配置

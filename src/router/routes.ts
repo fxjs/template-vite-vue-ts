@@ -1,11 +1,3 @@
-import { RouteRecordRaw } from 'vue-router';
+import { topRoutes } from '@/router/register/topRoutes';
 
-const routes: RouteRecordRaw[] = [
-  {
-    path: '/',
-    name: 'home',
-    component: () => import('@/views/home/index.vue'),
-  },
-];
-
-export default routes;
+export default topRoutes;
