@@ -1,38 +1,31 @@
 import {
-  dayEnd,
-  dayStart,
-  getCurrentMonthEnd,
-  getCurrentMonthStart,
-  getCurrentYearEnd,
-  getCurrentYearStart,
-} from '@/utils/rangeTime';
+  getCurrentDayRange,
+  getCurrentMonthRange,
+  getCurrentQuarterRange,
+  getCurrentYearRange,
+} from '@/utils/dayjsRange.ts';
 import { Shortcuts } from 'naive-ui/es/date-picker/src/interface';
 
-export function useDatePicker() {
+/**
+ * 快捷日期范围
+ */
+export function useShortcutsDateRange() {
   const shortcuts: Shortcuts = {
-    今日: () => {
-      const start = dayStart(new Date()) as string;
-      const end = dayEnd(new Date()) as string;
-      return [new Date(start).getTime(), new Date(end).getTime()];
-    },
-    本月: () => {
-      const start = getCurrentMonthStart(new Date()) as string;
-      const end = getCurrentMonthEnd(new Date()) as string;
-      return [new Date(start).getTime(), new Date(end).getTime()];
-    },
-    本年: () => {
-      const start = getCurrentYearStart(new Date()) as string;
-      const end = getCurrentYearEnd(new Date()) as string;
-      return [new Date(start).getTime(), new Date(end).getTime()];
-    },
+    今日: () => getCurrentDayRange<number>(new Date(), true),
+    本月: () => getCurrentMonthRange<number>(new Date(), true),
+    本季度: () => getCurrentQuarterRange<number>(new Date(), true),
+    本年: () => getCurrentYearRange<number>(new Date(), true),
   };
+
   function shortcutsFilter(rs: string[]): Shortcuts {
-    const shortcutsF: Shortcuts = {};
-    rs.forEach((s) => {
-      if (Object.keys(shortcuts).includes(s)) shortcutsF[s] = shortcuts[s];
-    });
-    return shortcutsF;
+    return rs.reduce((filtered, s) => {
+      if (s in shortcuts) {
+        filtered[s] = shortcuts[s];
+      }
+      return filtered;
+    }, {} as Shortcuts);
   }
+
   return {
     shortcuts,
     shortcutsFilter,
