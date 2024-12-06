@@ -1,80 +1,50 @@
 <template>
   <div :class="$style['form-wrap']">
-    <div :class="$style['form-title']">
-      <n-gradient-text :gradient="{ from: '#fff', to: '#5fbaff' }" style="--n-font-weight: 600">登录</n-gradient-text>
+    <t-form
+      ref="formRefM1"
+      :data="formValM1"
+      :rules="rulesM1"
+      show-error-message
+      scroll-to-first-error="auto"
+      @submit="handleValidateSubmit"
+      :requiredMark="false"
+      :label-width="0"
+    >
+      <t-form-item name="username">
+        <t-input v-model:value="formValM1.username" borderless placeholder="请输入账号/手机号码"></t-input>
+      </t-form-item>
+
+      <t-form-item name="pwd">
+        <t-input v-model:value="formValM1.pwd" borderless type="password" :clearable="false" placeholder="请输入密码">
+          <template #suffixIcon>
+            <BrowseOffIcon />
+          </template>
+        </t-input>
+      </t-form-item>
+    </t-form>
+
+    <!-- submit -->
+    <div :class="$style['btn-login']">
+      <t-button theme="primary" :loading="loading" @click="handleValidateSubmit" size="large" class="!text-white">
+        登录
+      </t-button>
     </div>
-    <n-config-provider :theme="darkTheme">
-      <n-tabs v-model:value="loginMode" animated pane-style="padding-top: 30px;" :theme-overrides="overrideTabsTheme()">
-        <n-tab-pane :name="1" tab="账号">
-          <n-form
-            ref="formRefM1"
-            class="com-autofill-none-dark"
-            :model="formValM1"
-            :rules="rulesM1"
-            label-placement="left"
-            label-width="auto"
-            require-mark-placement="right-hanging"
-            size="large"
-          >
-            <n-form-item label="" path="username">
-              <n-input v-model:value="formValM1.username" placeholder="请输入账号" clearable>
-                <template #prefix><IconUser /></template>
-              </n-input>
-            </n-form-item>
-            <n-form-item label="" path="pwd" style="margin-top: 15px">
-              <n-input v-model:value="formValM1.pwd" :type="passwordType" maxlength="16" placeholder="请输入密码">
-                <template #prefix><IconLock style="font-size: 18px" /></template>
-                <template #suffix>
-                  <div class="cursor-pointer">
-                    <img
-                      src="./assets/no-see.png"
-                      v-if="passwordType === 'password'"
-                      @click="changeType('text')"
-                      alt=""
-                    />
-                    <img
-                      src="./assets/see-pre.png"
-                      v-if="passwordType === 'text'"
-                      @click="changeType('password')"
-                      alt=""
-                    />
-                  </div>
-                </template>
-              </n-input>
-            </n-form-item>
-
-            <div class="h-[30px]">
-              <n-checkbox v-model:checked="isRememberInfo" :theme-overrides="overrideCheckboxTheme()">
-                记住登录状态
-              </n-checkbox>
-            </div>
-          </n-form>
-        </n-tab-pane>
-      </n-tabs>
-
-      <!-- submit -->
-      <div :class="$style['btn-login']">
-        <n-button type="primary" :loading="loading" @click="handleValidateSubmit" size="large" class="!text-white">
-          登录
-        </n-button>
-      </div>
-    </n-config-provider>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { BxSolidLock as IconLock } from '@kalimahapps/vue-icons';
 import { ref } from 'vue';
-import { darkTheme } from 'naive-ui';
-import { FaUserLarge as IconUser } from '@kalimahapps/vue-icons';
-import { FormInst, FormRules, NConfigProvider } from 'naive-ui';
 import { onKeyStroke } from '@vueuse/core';
-import { overrideCheckboxTheme, overrideTabsTheme } from './overrideTheme';
 import { encryptAes, decryptAes, encryptSm2GM, encryptMd5 } from '@/utils/crypto.ts';
 import { useAuthStore } from '@/store/auth';
 import { useAutoLoading } from '@/common/hooks/useAutoLoading.ts';
 import { LS } from '@/utils/storages.ts';
 import pkg from '../../../package.json';
+import { BrowseOffIcon } from 'tdesign-icons-vue-next';
+import { Form as TForm } from 'tdesign-mobile-vue';
+import { FormItem as TFormItem } from 'tdesign-mobile-vue';
+import { Input as TInput } from 'tdesign-mobile-vue';
+import { Button as TButton } from 'tdesign-mobile-vue';
 
 const [loading, submit] = useAutoLoading();
 const passwordType = ref<'text' | 'password'>('password');
@@ -87,27 +57,33 @@ interface LoginCacheType {
 const secretKey = 'XYZXF';
 const loginCacheKey = pkg.name.toUpperCase().replace(/-/g, '_');
 const loginCacheRes: LoginCacheType = getLoginCache();
-const formRefM1 = ref<FormInst | null>(null);
-const formRefM2 = ref<FormInst | null>(null);
+const formRefM1 = ref<any | null>(null);
+const formRefM2 = ref<any | null>(null);
 const isRememberInfo = ref(!!loginCacheRes.n); // 有缓存默认勾选
 
 const loginMode = ref<1 | 2>(1); // 登录方式（1-账号密码登录 ；2-短信登录；）
 const formValM1 = ref({
-  username: loginCacheRes.n || null,
-  pwd: loginCacheRes.p || null,
+  username: loginCacheRes.n,
+  pwd: loginCacheRes.p,
 });
 
-const rulesM1: FormRules = {
-  username: {
-    required: true,
-    trigger: ['blur'],
-    message: '账号不能为空',
-  },
-  pwd: {
-    required: true,
-    trigger: ['blur'],
-    message: '密码不能为空',
-  },
+const rulesM1: any = {
+  username: [
+    {
+      validator: (val: any) => val?.length > 0,
+      required: true,
+      trigger: 'blur',
+      message: '账号不能为空',
+    },
+  ],
+  pwd: [
+    {
+      validator: (val: any) => val?.length > 0,
+      required: true,
+      trigger: 'blur',
+      message: '密码不能为空',
+    },
+  ],
 };
 
 const formValM2 = ref({
@@ -119,8 +95,8 @@ const authStore = useAuthStore();
 
 function handleValidateSubmit() {
   if (loginMode.value === 1) {
-    formRefM1.value?.validate((errors) => {
-      if (!errors) {
+    formRefM1.value?.validate().then((res: boolean) => {
+      if (res) {
         if (loading.value) return;
         const params = {
           // 国密算法
@@ -146,20 +122,20 @@ function handleValidateSubmit() {
     });
   }
 
-  if (loginMode.value === 2) {
-    formRefM2.value?.validate((errors) => {
-      if (!errors) {
-        if (loading.value) return;
-        const params = {
-          loginMode: loginMode.value,
-          loginName: formValM2.value.phone,
-          smsCode: formValM2.value.captcha,
-        };
-
-        submit(authStore.login(params));
-      }
-    });
-  }
+  // if (loginMode.value === 2) {
+  //   formRefM2.value?.validate((errors: any) => {
+  //     if (!errors) {
+  //       if (loading.value) return;
+  //       const params = {
+  //         loginMode: loginMode.value,
+  //         loginName: formValM2.value.phone,
+  //         smsCode: formValM2.value.captcha,
+  //       };
+  //
+  //       submit(authStore.login(params));
+  //     }
+  //   });
+  // }
 }
 
 function getLoginCache() {
@@ -204,15 +180,12 @@ defineOptions({ name: 'loginForm' });
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: 478px;
-  height: 600px;
+  width: 375px;
+  height: 50vh;
   padding: 35px 45px;
   border-radius: 4px;
   align-self: end;
-
-  background: rgba(6, 34, 76, 0.7);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-  border: 2px solid #2c5ba8;
+  background: rgb(0 0 0 / 22%);
 }
 
 .form-title {

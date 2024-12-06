@@ -17,17 +17,6 @@ export const topRoutes: RouteRecordRaw[] = [
         name: 'homeIndex',
         component: () => import('@/views/home/index.vue'),
       },
-      {
-        path: 'demo',
-        name: 'demo',
-        children: [
-          {
-            path: 'demo-table',
-            name: 'demoTable',
-            component: () => import('@/views/demo-table/index.vue'),
-          },
-        ],
-      },
     ],
   },
   {

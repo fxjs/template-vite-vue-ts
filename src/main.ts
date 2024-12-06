@@ -1,6 +1,9 @@
-import { setupApi, setupAssets, setupRouter, setupStore } from '@/plugins';
 import { createApp } from 'vue';
 import App from './App.vue';
+import { setupAssets } from '@/plugins/setupAssets.ts';
+import { setupStore } from '@/plugins/setupStore.ts';
+import { setupApi } from '@/plugins/setupApi.ts';
+import { setupRouter } from '@/plugins/setupRouter.ts';
 
 async function setupApp() {
   const app = createApp(App);

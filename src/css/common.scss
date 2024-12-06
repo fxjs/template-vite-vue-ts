@@ -15,8 +15,11 @@
 }
 
 body {
-  font-size: 14px;
   background: var(--skin-bg2);
+}
+
+#app {
+  margin: 0 auto;
 }
 
 .com-header {

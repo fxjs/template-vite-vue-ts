@@ -5,7 +5,7 @@
 项目初始包集成：
  - 代码规范：Eslint + Prettier + Husky + CommitLint
  - 构建系统：Turborepo
- - 组件库：naive-ui
+ - 组件库：Vant4
  - 图标库：@kalimahapps/vue-icons
  - 常用库：echarts、dayjs、rxjs等
  - lib.js集成：取URL参数`window.$_getUrlParams`、脚本注入`window.$_ScriptInjector`

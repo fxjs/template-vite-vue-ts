@@ -2,10 +2,8 @@ import type { Router } from 'vue-router';
 import { topRoutes as baseArr } from '@/router/register/topRoutes';
 import { registerDynamicRoute } from '@/router/register';
 import { initialRoutes } from '@/router';
-import { MessageReactive } from 'naive-ui/es/message/src/MessageProvider';
 import { sleep } from '@/utils/time.ts';
 import { usePermsStore } from '@/store/perms';
-import useMndCtx from '@/common/shareContext/useMndCtx.ts';
 import { useAuthStore } from '@/store/auth';
 
 export function setupRouterGuard(router: Router) {
@@ -31,7 +29,7 @@ export function resetRoutes(router: Router) {
  * @param router
  */
 export function createPageGuard(router: Router) {
-  let updaterLoadingInst: MessageReactive | undefined;
+  let updaterLoadingInst: unknown | undefined;
   let updaterTimer: unknown;
 
   router.beforeEach(async (to, from, next) => {
@@ -40,9 +38,9 @@ export function createPageGuard(router: Router) {
 
     if (window.$sysUpdater?.hasNewVer && !updaterLoadingInst) {
       // 开始 loadingBar
-      useMndCtx().loadingBar.start();
+      // useMndCtx().loadingBar.start();
       // 显示升级 loading
-      updaterLoadingInst = useMndCtx().message.loading(window.$sysUpdater.updateVerTip, { duration: 0 });
+      // updaterLoadingInst = useMndCtx().message.loading(window.$sysUpdater.updateVerTip, { duration: 0 });
     }
 
     // meta支持配置非授权页 { noAuth: true }
@@ -82,10 +80,10 @@ export function createPageGuard(router: Router) {
       document.title = window.$sysUpdater.updateVerTip;
       updaterTimer = setTimeout(async () => {
         // 结束 loadingBar
-        useMndCtx().loadingBar.finish();
+        // useMndCtx().loadingBar.finish();
         await sleep(1000);
         window.location.reload();
-        updaterLoadingInst?.destroy();
+        // updaterLoadingInst?.destroy();
         updaterLoadingInst = undefined;
         updaterTimer = undefined;
       }, 5000);

@@ -4,7 +4,6 @@ import { defineStore } from 'pinia';
 import { IObj } from '@/types';
 import router from '@/router';
 import { postLogin, postLogout } from '@/store/auth/fetchData.ts';
-import useMndCtx from '@/common/shareContext/useMndCtx.ts';
 
 export const useAuthStore = defineStore(`${pkg.name}-store`, {
   persist: true,
@@ -29,11 +28,11 @@ export const useAuthStore = defineStore(`${pkg.name}-store`, {
     async logout(opt?: any) {
       const userId = this.userInfo.userId + '';
 
-      useMndCtx().loadingBar.start();
+      // useMndCtx().loadingBar.start();
       postLogout(userId).finally(async () => {
         try {
           await router.push({ name: 'login' });
-          useMndCtx().loadingBar.finish();
+          // useMndCtx().loadingBar.finish();
         } catch (e) {}
       });
       this.reset();
