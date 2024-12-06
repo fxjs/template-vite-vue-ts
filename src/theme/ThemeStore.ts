@@ -7,7 +7,8 @@ class ThemeStore {
   themeRef: Ref<ThemeConfig> = ref(new ThemeConfig());
 
   constructor() {
-    const initialConfig = <ThemeConfig>LS.get(this.cacheKey) || new ThemeConfig();
+    const force = window.$SYS_CFG.forceTheme;
+    const initialConfig = force ? new ThemeConfig() : <ThemeConfig>LS.get(this.cacheKey) || new ThemeConfig();
     this.themeRef.value = initialConfig;
     this.themeConfig = initialConfig;
     this.initSystemThemeListener();
