@@ -4,6 +4,7 @@ import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import { resolve } from 'path';
 import { injectVersionInfoPlugin } from './plugins/vite/vite-plugin-inject-version-info';
+import { manifestPlugin } from './plugins/vite/vite-plugin-manifest';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,6 +26,7 @@ export default defineConfig({
       directoryAsNamespace: true,
     }),
     injectVersionInfoPlugin(),
+    manifestPlugin(),
   ],
   resolve: {
     alias: {
@@ -41,5 +43,6 @@ export default defineConfig({
       },
     },
     cssCodeSplit: true,
+    manifest: true,
   },
 });
