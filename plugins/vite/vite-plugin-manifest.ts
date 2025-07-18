@@ -7,7 +7,7 @@ export interface ManifestOptions {
   filename?: string; // manifest 文件名，默认为 manifest.json
   preload?: string[]; // 预加载资源列表，既可以配置手动指定的资源，也会从自动生成的 manifest 中提取资源名称
   exclude?: string[]; // 要排除的资源列表，支持使用通配符 '*' 进行模糊匹配
-  enableLog?: boolean; // 日志开关，默认为 true
+  enableLog?: boolean; // 日志开关，默认关
 }
 
 /**
@@ -15,8 +15,8 @@ export interface ManifestOptions {
  * 根据 options.enableLog 判断是否输出日志，会在日志中附带时间戳和详细信息
  */
 function createLogger(options: ManifestOptions) {
-  const enableLog = options.enableLog === undefined ? true : options.enableLog;
-  const getTime = () => new Date().toISOString();
+  const enableLog = !!options.enableLog;
+  const getTime = () => new Date().toLocaleString();
   return {
     log: (...args: any[]) => {
       if (enableLog) {
