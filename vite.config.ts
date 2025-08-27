@@ -3,8 +3,9 @@ import vue from '@vitejs/plugin-vue';
 import Components from 'unplugin-vue-components/vite';
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers';
 import { resolve } from 'path';
-import { injectVersionInfoPlugin } from './plugins/vite/vite-plugin-inject-version-info';
-import { manifestPlugin } from './plugins/vite/vite-plugin-manifest';
+import { envConfigPlugin, manifestPlugin, injectVersionInfoPlugin } from '@tanzerfe/plugins-vite';
+
+const outputDir = 'dist';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -25,8 +26,14 @@ export default defineConfig({
       resolvers: [NaiveUiResolver()],
       directoryAsNamespace: true,
     }),
+    manifestPlugin({
+      output: outputDir,
+    }),
     injectVersionInfoPlugin(),
-    manifestPlugin(),
+    envConfigPlugin({
+      outputDir: outputDir + '/com',
+      obfuscate: true,
+    }),
   ],
   resolve: {
     alias: {
