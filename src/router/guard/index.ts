@@ -1,12 +1,13 @@
 import type { Router } from 'vue-router';
-import { topRoutes as baseArr } from '@/router/register/topRoutes';
-import { registerDynamicRoute } from '@/router/register';
+import useMndCtx from '@/common/shareContext/useMndCtx.ts';
+import { APP_CONFIG } from '@/app.config.ts';
 import { initialRoutes } from '@/router';
 import { MessageReactive } from 'naive-ui/es/message/src/MessageProvider';
+import { registerDynamicRoute } from '@/router/register';
 import { sleep } from '@/utils/time.ts';
-import { usePermsStore } from '@/store/perms';
-import useMndCtx from '@/common/shareContext/useMndCtx.ts';
+import { topRoutes as baseArr } from '@/router/register/topRoutes';
 import { useAuthStore } from '@/store/auth';
+import { usePermsStore } from '@/store/perms';
 
 export function setupRouterGuard(router: Router) {
   createPageGuard(router);
@@ -52,7 +53,11 @@ export function createPageGuard(router: Router) {
 
     if (!isLogin) {
       if (to.name !== 'login') {
-        next({ name: 'login' });
+        if (APP_CONFIG.useLoginPage) {
+          next({ name: 'login' });
+        } else {
+          next();
+        }
       } else {
         if (from.name && from.name !== 'login') {
           window.location.reload();
