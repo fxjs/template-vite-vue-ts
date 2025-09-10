@@ -42,7 +42,7 @@
     "@kalimahapps/vue-icons": "^1.4.1",
     "@tanzerfe/eslint-config-lint": "^0.0.7",
     "@tanzerfe/http": "^1.0.1",
-    "@tanzerfe/plugins-vite": "^0.0.1",
+    "@tanzerfe/plugins-vite": "^0.0.2",
     "@types/crypto-js": "^4.2.2",
     "@types/lodash-es": "^4.17.12",
     "@types/node": "^20.12.10",
