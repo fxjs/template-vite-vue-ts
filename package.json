@@ -7,8 +7,8 @@
     "dev": "vite",
     "build:dev": "vite build --mode dev",
     "tsc": "vue-tsc --noEmit",
-    "lint": "eslint . --ext .js,.ts,.vue --ignore-path .eslintignore",
-    "lint:fix": "eslint . --ext .js,.ts,.vue --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "prepare": "husky install",
     "preview": "vite preview"
   },
@@ -40,7 +40,7 @@
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-angular": "17.8.1",
     "@kalimahapps/vue-icons": "^1.4.1",
-    "@tanzerfe/eslint-config-lint": "^0.0.7",
+    "@tanzerfe/eslint-config-lint": "^0.0.10",
     "@tanzerfe/http": "^1.0.1",
     "@tanzerfe/plugins-vite": "^0.0.2",
     "@types/crypto-js": "^4.2.2",
@@ -74,6 +74,6 @@
     }
   },
   "lint-staged": {
-    "*.{vue,ts,tsx,js,jsx}": "eslint --ignore-path .eslintignore --fix"
+    "*.{vue,ts,tsx,js,jsx}": "eslint --fix"
   }
 }
